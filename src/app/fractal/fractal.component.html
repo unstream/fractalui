@@ -1,0 +1,10 @@
+<div>
+  <canvas #myCanvas width="500" height="500" style="background:white"></canvas>
+  <div>
+
+    Iterations <input type="range" min="0" max="{{maxIterations}}" [(ngModel)]="iterations" value="{{iterations}}" (change)="draw()" /><br />
+    Color 1 <input type="color" [(ngModel)]="color" placeholder="color" value="{{color}}" (change)="draw()"/>
+    Color 2 <input type="color" [(ngModel)]="color2" placeholder="color2" value="{{color2}}" (change)="draw()"/>
+
+  </div>
+</div>
