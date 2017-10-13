@@ -1,10 +1,93 @@
-<div>
-  <canvas #myCanvas width="500" height="500" style="background:white"></canvas>
-  <div>
+<app-nav></app-nav>
+<!-- Page Content -->
+<div class="container">
 
-    Iterations <input type="range" min="0" max="{{maxIterations}}" [(ngModel)]="iterations" value="{{iterations}}" (change)="draw()" /><br />
-    Color 1 <input type="color" [(ngModel)]="color" placeholder="color" value="{{color}}" (change)="draw()"/>
-    Color 2 <input type="color" [(ngModel)]="color2" placeholder="color2" value="{{color2}}" (change)="draw()"/>
+  <!-- Portfolio Item Heading -->
+  <h1 class="my-4">Fractals
+    <small>Mandelbrot set</small>
+  </h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+        <canvas #myCanvas width="500" height="500" style="background:white"></canvas>
+        <br>
+        <canvas #gradient width="500" height="20" style="background:white"></canvas>
+    </div>
+
+    <div class="col-md-4">
+      <form (ngSubmit)="onSubmit(fractalForm)" #fractalForm="ngForm">
+        <div class="form-group">
+          <label for="c0">c<sub>0</sub></label>
+          <input type="text" class="form-control" id="c0" [(ngModel)]="model.c0" name="c0" aria-describedby="c0Help" placeholder="Enter c0">
+          <small id="c0Help" class="form-text text-muted">Left boundary of the Mandelbrot set</small>
+        </div>
+        <div class="form-group">
+          <label for="c0i">c<sub>0</sub>i</label>
+          <input type="text" class="form-control" id="c0i" [(ngModel)]="model.c0i" name="c0i" aria-describedby="c0iHelp" placeholder="Enter c0i">
+          <small id="c0iHelp" class="form-text text-muted">Upper boundary of the Mandelbrot set</small>
+        </div>
+        <div class="form-group">
+          <label for="c1">c<sub>1</sub></label>
+          <input type="text" class="form-control" id="c1"  [(ngModel)]="model.c1" name="c1" aria-describedby="c1Help" placeholder="Enter c1">
+          <small id="c1Help" class="form-text text-muted">Right boundary of the Mandelbrot set</small>
+        </div>
+        <div class="form-group">
+          <label for="c1i">c<sub>1</sub>i</label>
+          <input type="text" class="form-control" id="c1i"  [(ngModel)]="model.c1i" name="c1i" aria-describedby="c1iHelp" placeholder="Enter c1i">
+          <small id="c1iHelp" class="form-text text-muted">Lower boundary of the Mandelbrot set</small>
+        </div>
+        <div class="form-group">
+          <label for="maxIterations">Iterations</label>
+          <input type="text" class="form-control" id="maxIterations"  [(ngModel)]="model.maxIterations" name="maxIterations" aria-describedby="maxIterationsHelp" placeholder="Enter the maxinum number of iterations">
+          <small id="maxIterationsHelp" class="form-text text-muted">Maxinum number of iterations</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <p></p>
+      Iterations <input type="range" min="0" max="{{maxIterations}}" [(ngModel)]="iterations" value="{{iterations}}" (change)="draw()" /><br />
+      Color 1 <input type="color" [(ngModel)]="color" placeholder="color" value="{{color}}" (change)="draw()"/>
+      Color 2 <input type="color" [(ngModel)]="color2" placeholder="color2" value="{{color2}}" (change)="draw()"/>
+
+    </div>
 
   </div>
+  <!-- /.row -->
+
+  <!-- Related Projects Row
+  <h3 class="my-4">Related Projects</h3>
+
+  <div class="row">
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+  </div>
+   /.row -->
+
 </div>
+<!-- /.container -->
+<app-footer></app-footer>
