@@ -5,7 +5,8 @@ export class Fractal {
     public c0i: number,
     public c1: number,
     public c1i: number,
-    public maxIterations: number
+    public minIterations: number,
+    public threshold: number,
   ) {  }
 
 }

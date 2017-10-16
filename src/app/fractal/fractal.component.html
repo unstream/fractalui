@@ -11,7 +11,10 @@
   <div class="row">
 
     <div class="col-md-8">
-        <canvas #myCanvas width="500" height="500" style="background:white"></canvas>
+<!--      <img-cropper [image]="myCanvas" [settings]="cropperSettings"></img-cropper><br>
+      <img [src]="https://images-na.ssl-images-amazon.com/images/I/81vsiZe2q6L._SL1500_.jpg" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+-->
+        <canvas #myCanvas (click)="clicked($event)" width="500" height="500" style="background:white"></canvas>
         <br>
         <canvas #gradient width="500" height="20" style="background:white"></canvas>
     </div>
@@ -39,15 +42,21 @@
           <small id="c1iHelp" class="form-text text-muted">Lower boundary of the Mandelbrot set</small>
         </div>
         <div class="form-group">
-          <label for="maxIterations">Iterations</label>
-          <input type="text" class="form-control" id="maxIterations"  [(ngModel)]="model.maxIterations" name="maxIterations" aria-describedby="maxIterationsHelp" placeholder="Enter the maxinum number of iterations">
-          <small id="maxIterationsHelp" class="form-text text-muted">Maxinum number of iterations</small>
+          <label for="minIterations">Minimum iterations</label>
+          <input type="text" class="form-control" id="minIterations"  [(ngModel)]="model.minIterations" name="minIterations" aria-describedby="minIterationsHelp" placeholder="Minimum number of iterations to iterate over">
+          <small id="minIterationsHelp" class="form-text text-muted">Minimum number of iterations to iterate over</small>
+        </div>
+        <div class="form-group">
+          <label for="threshold">Threshold</label>
+          <input type="text" class="form-control" id="minIterations"  [(ngModel)]="model.threshold" name="threshold" aria-describedby="thresholdHelp" placeholder="Threshold on change before doubling th number of iterations">
+          <small id="thresholdHelp" class="form-text text-muted">Threshold on change before doubling th number of iterations</small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" (click)="gotoLast()" class="btn btn-cancel">Back</button>
       </form>
 
       <p></p>
-      Iterations <input type="range" min="0" max="{{maxIterations}}" [(ngModel)]="iterations" value="{{iterations}}" (change)="draw()" /><br />
+      Iterations <input type="input" min="0" max="{{maxIterations}}" [(ngModel)]="iterations" value="{{iterations}}" (change)="draw()" /><br />
       Color 1 <input type="color" [(ngModel)]="color" placeholder="color" value="{{color}}" (change)="draw()"/>
       Color 2 <input type="color" [(ngModel)]="color2" placeholder="color2" value="{{color2}}" (change)="draw()"/>
 
