@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { ImageCropperModule } from 'ng2-img-cropper';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 //import {ImageCropperComponent} from 'ng2-img-cropper';
 
 const appRoutes: Routes = [
@@ -21,8 +21,9 @@ const appRoutes: Routes = [
     //ImageCropperComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    BrowserModule, HttpClientModule, FormsModule, ImageCropperModule
+    BrowserModule, HttpClientModule, FormsModule
   ],
   providers: [],
 //  bootstrap: [AppComponent, CanvasComponent]

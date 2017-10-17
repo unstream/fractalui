@@ -3,8 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {Fractal} from './fractal';
-import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
-
+//import {Options} from '@types/spectrum';
 
 //import {HostListener} from "@angular/core";
 
@@ -34,9 +33,6 @@ export class FractalComponent implements AfterViewInit, OnInit {
 
   data: number[][];
 
-  cropData: any;
-  cropperSettings: CropperSettings;
-
   // private last: MouseEvent;
   // private mouseDown : boolean = false;
   // @HostListener('mouseup')
@@ -57,17 +53,6 @@ export class FractalComponent implements AfterViewInit, OnInit {
   //   }
 
   constructor(private http: HttpClient) {
-
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 250;
-    this.cropperSettings.height = 250;
-    this.cropperSettings.croppedWidth = 250;
-    this.cropperSettings.croppedHeight = 250;
-    this.cropperSettings.canvasWidth = 500;
-    this.cropperSettings.canvasHeight = 500;
-    this.cropperSettings.noFileInput = true;
-    this.cropData = {};
-
   }
 
 
