@@ -1,0 +1,38 @@
+
+<div class="s">
+  <div class="row no-gutters">
+    <div class="col">
+     <canvas #colorCanvas (click)="clicked($event)" width="250" height="50" style="background:white;position:relative"></canvas>
+    </div>
+  </div>
+
+  <div class="row no-gutters justify-content-between" *ngFor="let color of model.data">
+    <div class="col-9">
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input type="color" class="" id="color" [(ngModel)]="color.color"
+               name="color.color"  (change)="onChanged()" aria-describedby="colorHelp" placeholder="Enter color">
+        <small id="colorHelp" class="form-text text-muted">Color for iteration {{color.iteration}}</small>
+      </div>
+    </div>
+    <div class="col text-right">
+      <span class="oi oi-trash" title="Delete row" aria-hidden="true" (click)="deleteRow(color.iteration)"></span>
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col">
+      <div class="form-group">
+        <label for="useLogScale">
+          <input type="checkbox" class="" id="useLogScale" [(ngModel)]="model.useLogScale" name="useLogScale"  (change)="onChanged()" aria-describedby="useLogScaleHelp" placeholder="Use logarithmic scale">
+          Use logarithmic scale
+        </label>
+        <small id="useLogScaleHelp" class="form-text text-muted">Use logarithmic scale</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

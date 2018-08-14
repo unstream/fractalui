@@ -1,122 +1,87 @@
 <app-nav></app-nav>
-<!-- Page Content -->
 <div class="container">
 
-  <!-- Portfolio Item Heading -->
-  <p>
-    <!-- Portfolio Item Row -->
+    <p>
     <div class="row">
 
-      <div class="col-md-8">
-        <canvas #myCanvas (click)="clicked($event)" width="500" height="500" style="background:white"></canvas>
-        <br>
-        <canvas #gradient width="500" height="20" style="background:white"></canvas>
-      </div>
+        <div class="col-md-8">
+            <canvas draggable="true" #myCanvas (mousedown)="mouseDown($event)" (dragend)="dragged($event)" (mouseup)="mouseUp($event)" (click)="clicked($event)" width="500" height="500" style="background:white"></canvas>
+            <br>
+            <!--<button type="button" class="btn btn-secondary">Back</button>-->
+            <button type="button" class="btn btn-success" (click)="save()">Save</button>
+            <!--<button type="button" class="btn btn-danger">Cancel</button>-->
 
-      <div class="col-md-4">
+        </div>
 
-        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel title="Coloring Parameters">
-            <ng-template ngbPanelContent>
-              <div class="form-group">
-                <label for="iterations">Iterations</label>
-                <input type="text" class="form-control" id="iterations" [(ngModel)]="iterations" name="iterations"  (change)="draw()" aria-describedby="iterationsHelp" placeholder="Enter iterations">
-                <small id="iterationsHelp" class="form-text text-muted">Maximum iteration used for coloring </small>
-              </div>
-              <div class="form-group">
-                <label for="color">Color 1</label>
-                <input type="color" class="" id="color" [(ngModel)]="color" name="color"  (change)="draw()" aria-describedby="colorHelp" placeholder="Enter color">
-                <small id="colorHelp" class="form-text text-muted">Color for iteration 0</small>
-              </div>
-              <div class="form-group">
-                <label for="color2">Color 2</label>
-                <input type="color" class="" id="color2" [(ngModel)]="color2" name="color2"  (change)="draw()" aria-describedby="color2Help" placeholder="Enter color">
-                <small id="color2Help" class="form-text text-muted">Color for maximum iteration </small>
-              </div>
-              <input id='colorpicker' />
 
-<script>
-$("#colorpicker").spectrum({
-    color: "#f00"
-});
-</script>
-            </ng-template>
-          </ngb-panel>
-          <ngb-panel title="Fractal Parameters">
-            <ng-template ngbPanelContent>
-              <form (ngSubmit)="onSubmit(fractalForm)" #fractalForm="ngForm">
-                <div class="form-group">
-                  <label for="c0">c<sub>0</sub></label>
-                  <input type="text" class="form-control" id="c0" [(ngModel)]="model.c0" name="c0" aria-describedby="c0Help" placeholder="Enter c0">
-                  <small id="c0Help" class="form-text text-muted">Left boundary of the Mandelbrot set</small>
-                </div>
-                <div class="form-group">
-                  <label for="c0i">c<sub>0</sub>i</label>
-                  <input type="text" class="form-control" id="c0i" [(ngModel)]="model.c0i" name="c0i" aria-describedby="c0iHelp" placeholder="Enter c0i">
-                  <small id="c0iHelp" class="form-text text-muted">Upper boundary of the Mandelbrot set</small>
-                </div>
-                <div class="form-group">
-                  <label for="c1">c<sub>1</sub></label>
-                  <input type="text" class="form-control" id="c1" [(ngModel)]="model.c1" name="c1" aria-describedby="c1Help" placeholder="Enter c1">
-                  <small id="c1Help" class="form-text text-muted">Right boundary of the Mandelbrot set</small>
-                </div>
-                <div class="form-group">
-                  <label for="c1i">c<sub>1</sub>i</label>
-                  <input type="text" class="form-control" id="c1i" [(ngModel)]="model.c1i" name="c1i" aria-describedby="c1iHelp" placeholder="Enter c1i">
-                  <small id="c1iHelp" class="form-text text-muted">Lower boundary of the Mandelbrot set</small>
-                </div>
-                <div class="form-group">
-                  <label for="minIterations">Minimum iterations</label>
-                  <input type="text" class="form-control" id="minIterations" [(ngModel)]="model.minIterations" name="minIterations" aria-describedby="minIterationsHelp" placeholder="Minimum number of iterations to iterate over">
-                  <small id="minIterationsHelp" class="form-text text-muted">Minimum number of iterations to iterate over</small>
-                </div>
-                <div class="form-group">
-                  <label for="threshold">Threshold</label>
-                  <input type="text" class="form-control" id="minIterations" [(ngModel)]="model.threshold" name="threshold" aria-describedby="thresholdHelp" placeholder="Threshold on change before doubling th number of iterations">
-                  <small id="thresholdHelp" class="form-text text-muted">Threshold on change before doubling th number of iterations</small>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" (click)="gotoLast()" class="btn btn-cancel">Back</button>
-              </form>
-            </ng-template>
-          </ngb-panel>
-        </ngb-accordion>
-      </div>
+        <div class="col-md-4">
+
+            <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+                <ngb-panel title="Coloring Parameters">
+                    <ng-template ngbPanelContent>
+                        <app-colors [model]="colorModel" (colorChange)="colorChange($event)">></app-colors>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Fractal Parameters">
+                    <ng-template ngbPanelContent>
+                        <form (ngSubmit)="onSubmit(fractalForm)" #fractalForm="ngForm">
+                            <div class="form-group">
+                                <label for="c0">c<sub>0</sub></label>
+                                <input type="text" class="form-control" id="c0" [(ngModel)]="model.c0" name="c0"
+                                       aria-describedby="c0Help" placeholder="Enter c0">
+                                <small id="c0Help" class="form-text text-muted">Left boundary of the Mandelbrot set
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="c0i">c<sub>0</sub>i</label>
+                                <input type="text" class="form-control" id="c0i" [(ngModel)]="model.c0i" name="c0i"
+                                       aria-describedby="c0iHelp" placeholder="Enter c0i">
+                                <small id="c0iHelp" class="form-text text-muted">Upper boundary of the Mandelbrot set
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="c1">c<sub>1</sub></label>
+                                <input type="text" class="form-control" id="c1" [(ngModel)]="model.c1" name="c1"
+                                       aria-describedby="c1Help" placeholder="Enter c1">
+                                <small id="c1Help" class="form-text text-muted">Right boundary of the Mandelbrot set
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="c1i">c<sub>1</sub>i</label>
+                                <input type="text" class="form-control" id="c1i" [(ngModel)]="model.c1i" name="c1i"
+                                       aria-describedby="c1iHelp" placeholder="Enter c1i">
+                                <small id="c1iHelp" class="form-text text-muted">Lower boundary of the Mandelbrot set
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="minIterations">Minimum iterations</label>
+                                <input type="text" class="form-control" id="minIterations"
+                                       [(ngModel)]="model.minIterations" name="minIterations"
+                                       aria-describedby="minIterationsHelp"
+                                       placeholder="Minimum number of iterations to iterate over">
+                                <small id="minIterationsHelp" class="form-text text-muted">Minimum number of iterations
+                                    to iterate over
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="threshold">Threshold</label>
+                                <input type="text" class="form-control" id="threshold" [(ngModel)]="model.threshold"
+                                       name="threshold" aria-describedby="thresholdHelp"
+                                       placeholder="Threshold on change before doubling th number of iterations">
+                                <small id="thresholdHelp" class="form-text text-muted">Threshold on change before
+                                    doubling the number of iterations
+                                </small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" (click)="gotoLast()" class="btn btn-cancel">Back</button>
+                        </form>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
     </div>
-    <!-- /.row -->
-
-    <!-- Related Projects Row
-  <h3 class="my-4">Related Projects</h3>
-
-  <div class="row">
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#">
-        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-
-  </div>
-   /.row -->
 
 </div>
-<!-- /.container -->
+
 <app-footer></app-footer>

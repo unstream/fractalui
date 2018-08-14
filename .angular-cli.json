@@ -10,7 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "../node_modules/spectrum-colorpicker/spectrum.css"
+        { "glob": "**/*", "input": "../node_modules/open-iconic/font/", "output": "./assets/open-iconic/font/" }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,9 +20,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+
       ],
       "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/spectrum-colorpicker/spectrum.js"
       ],
       "environmentSource": "environments/environment.ts",

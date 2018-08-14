@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FractalComponent } from './fractal/fractal.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ColorsComponent } from './colors/colors.component';
 //import {ImageCropperComponent} from 'ng2-img-cropper';
 
 const appRoutes: Routes = [
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     FractalComponent,
     NavComponent,
     FooterComponent,
+    ColorsComponent,
     //ImageCropperComponent
   ],
   imports: [
