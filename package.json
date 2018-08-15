@@ -1,14 +1,18 @@
 {
   "name": "fractalui",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start_old": "ng serve",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+
+    "install": "ng build --prod; mkdir -p public; cp -a dist/* public",
+    "start": "node_modules/http-server/bin/http-server public --cors"
+
   },
   "private": true,
   "dependencies": {
@@ -33,7 +37,8 @@
     "rxjs": "^5.5.11",
     "spectrum-colorpicker": "^1.8.0",
     "typescript": "^2.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "http-server": "^0.11.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.4",
