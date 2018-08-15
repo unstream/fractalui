@@ -4,15 +4,14 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "config": "ts-node set-env.ts",
     "start_old": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-
-    "install": "ng build --prod; mkdir -p public; cp -a dist/* public",
+    "install": "npm run config; ng build --prod; mkdir -p public; cp -a dist/* public",
     "start": "node_modules/http-server/bin/http-server public --cors"
-
   },
   "private": true,
   "dependencies": {
@@ -46,7 +45,7 @@
     "@angular/language-service": "^5.2.11",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~6.0.60",
+    "@types/node": "^6.0.116",
     "codelyzer": "~3.1.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",

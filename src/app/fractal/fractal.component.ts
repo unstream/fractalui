@@ -4,6 +4,7 @@ import {HttpParams} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {Fractal} from './fractal';
 import {Colors} from '../colors/colors';
+import { environment } from '../../environments/environment';
 import {Color} from '../colors/color';
 import {animationFrame} from 'rxjs/scheduler/animationFrame';
 
@@ -122,7 +123,7 @@ export class FractalComponent implements AfterViewInit, OnInit {
             .set('minIterations', '' + this.model.minIterations)
             .set('threshold', '' + this.model.threshold);
         //  .set('iterations', '' + this.model.maxIterations);
-        this.http.get<LongQuad>('http://localhost:8383/fractalservice/api/fractal/longquad', {params}).subscribe(data => {
+            this.http.get<LongQuad>(environment.fractalServiceUrl, {params}).subscribe(data => {
             this.data = data.data;
             let max = 0;
             let min = this.data[0][0];

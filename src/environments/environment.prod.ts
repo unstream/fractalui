@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: 'undefined',
+    fractalServiceUrl: 'http://localhost:8383/fractalservice/api/fractal/longquad'
 };
