@@ -6,11 +6,11 @@
     "ng": "ng",
     "config": "ts-node set-env.ts",
     "start_old": "ng serve",
-    "build": "ng build",
+    "build_old": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install": "npm run config;  mkdir -p public; cp -a dist/* public",
+    "install": "npm install && npm run config;  mkdir -p public; cp -a dist/* public",
     "start": "node_modules/http-server/bin/http-server public --cors"
   },
   "private": true,
