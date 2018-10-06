@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "config": "ts-node set-env.ts",
+    "config": "ts-node set-env.ts --environment=${NODE_ENV}",
     "start_old": "ng serve",
     "build_old": "ng build",
     "test": "ng test",
@@ -46,6 +46,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^6.0.116",
     "codelyzer": "^4.1.0",
+    "dotenv": "^6.0.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
